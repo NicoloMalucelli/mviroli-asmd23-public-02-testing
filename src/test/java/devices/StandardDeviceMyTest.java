@@ -60,4 +60,16 @@ public class StandardDeviceMyTest {
         assertFalse(this.device.isOn());
     }
 
+    @Test
+    @DisplayName("StandardDevice multiple turn on and off")
+    public void testMultipleTurnOnAndOff(){
+        when(this.failingPolicy.attemptOn()).thenReturn(true, true, false);
+        this.device.on();
+        this.device.off();
+        this.device.on();
+        this.device.off();
+        assertThrows(IllegalStateException.class, () -> this.device.on());
+        verify(this.failingPolicy, times(3)).attemptOn();
+    }
+
 }
