@@ -3,19 +3,17 @@ package devices;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import static org.mockito.Mockito.*;
 
 public class StandardDeviceMyTest {
 
-    private FailingPolicy dummyFailingPolicy;
+    private FailingPolicy failingPolicy;
     private StandardDevice device;
 
     @BeforeEach
     public void createDummyFailingPolicy(){
-        this.dummyFailingPolicy = mock(FailingPolicy.class);
-        this.device = new StandardDevice(dummyFailingPolicy);
+        this.failingPolicy = mock(FailingPolicy.class);
+        this.device = new StandardDevice(failingPolicy);
     }
 
     @Test
@@ -27,7 +25,7 @@ public class StandardDeviceMyTest {
     @Test
     @DisplayName("StandardDevice creation with failing policy")
     public void testDeviceCreationWithFailingPolicy(){
-        assertDoesNotThrow(() -> new StandardDevice(this.dummyFailingPolicy));
+        assertDoesNotThrow(() -> new StandardDevice(this.failingPolicy));
     }
 
     @Test
@@ -36,6 +34,12 @@ public class StandardDeviceMyTest {
         assertFalse(this.device.isOn());
     }
 
-
+    @Test
+    @DisplayName("StandardDevice turn on successfully when FailingPolicy allows it")
+    public void testTurnOnSuccessfully(){
+        when(this.failingPolicy.attemptOn()).thenReturn(true);
+        assertDoesNotThrow(() -> this.device.on());
+        verify(this.failingPolicy, times(1)).attemptOn();
+    }
 
 }
