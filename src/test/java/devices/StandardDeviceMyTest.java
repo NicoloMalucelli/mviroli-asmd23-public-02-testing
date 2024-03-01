@@ -1,6 +1,11 @@
 package devices;
 
 import org.junit.jupiter.api.*;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import static org.mockito.Mockito.*;
@@ -72,6 +77,12 @@ public class StandardDeviceMyTest {
         verify(this.failingPolicy, times(3)).attemptOn();
     }
 
+    @Test
+    @DisplayName("StandardDevice test reset")
+    public void testReset(){
+        device.reset();
+        verify(this.failingPolicy, times(1)).reset();
+     }
 
 
 }
