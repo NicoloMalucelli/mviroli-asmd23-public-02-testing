@@ -9,9 +9,16 @@ import static org.mockito.Mockito.*;
 public class StandardDeviceMyTest {
 
     @Test
-    @DisplayName("Can't create a device without a failing policy")
+    @DisplayName("StandardDevice creation withou failing policy")
     public void testNullFailingPolicy(){
         assertThrows(NullPointerException.class, () -> new StandardDevice(null));
+    }
+
+    @Test
+    @DisplayName("StandardDevice creation with failing policy")
+    public void testDeviceCreationWithFailingPolicy(){
+        final FailingPolicy dummyFailingPolicy = mock(FailingPolicy.class);
+        assertDoesNotThrow(() -> new StandardDevice(dummyFailingPolicy));
     }
 
 
