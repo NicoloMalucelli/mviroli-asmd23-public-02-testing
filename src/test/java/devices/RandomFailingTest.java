@@ -15,7 +15,7 @@ public class RandomFailingTest {
 
     @Test
     @DisplayName("After one fail it keep failing")
-    public void AfterOneFailKeepFailing(){
+    public void testAfterOneFailKeepFailing(){
         do{
         }while(failingPolicy.attemptOn());
         for(int i = 0; i < 10; i++){
