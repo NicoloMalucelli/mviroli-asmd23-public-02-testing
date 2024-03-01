@@ -39,6 +39,16 @@ public class StandardDeviceMyTest {
     public void testTurnOnSuccessfully(){
         when(this.failingPolicy.attemptOn()).thenReturn(true);
         assertDoesNotThrow(() -> this.device.on());
+        assertTrue(this.device.isOn());
+        verify(this.failingPolicy, times(1)).attemptOn();
+    }
+
+    @Test
+    @DisplayName("StandardDevice doesn't turn on when FailingPolicy fails")
+    public void testTurnOnFails(){
+        when(this.failingPolicy.attemptOn()).thenReturn(false);
+        assertThrows(IllegalStateException.class, () -> this.device.on());
+        assertFalse(this.device.isOn());
         verify(this.failingPolicy, times(1)).attemptOn();
     }
 
