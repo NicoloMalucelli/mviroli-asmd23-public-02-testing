@@ -13,11 +13,13 @@ public class LogicsImpl implements Logics {
 	private Set<Pair<Integer,Integer>> selected = new HashSet<>();
 	
 	public LogicsImpl(int size) {
+		Log.print("grid of size " + size + "created");
 		this.size = size;
 	}
 
 	@Override
 	public HitType hit(int x, int y) {
+		Log.print("(" + x  + "," + y + ")");
 		var p = new Pair<>(x,y);
 		if (this.first.isEmpty()) {
 			this.first = Optional.of(p);
@@ -33,6 +35,10 @@ public class LogicsImpl implements Logics {
 			for (var y: range(p1.getY(),p2.getY())){
 				this.selected.add(new Pair<>(x,y));
 			}
+		}
+		Log.print(selected.size() + " selected cells");
+		if(selected.size() == size*size){
+			Log.print("Game over");
 		}
 	}
 	
