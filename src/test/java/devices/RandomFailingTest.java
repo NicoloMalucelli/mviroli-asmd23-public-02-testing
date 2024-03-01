@@ -10,8 +10,17 @@ public class RandomFailingTest {
 
     @BeforeEach
     public void init(){
-        failingPolicy = mock(FailingPolicy.class);
+        failingPolicy = new RandomFailing();
     }
 
+    @Test
+    @DisplayName("After one fail it keep failing")
+    public void AfterOneFailKeepFailing(){
+        do{
+        }while(failingPolicy.attemptOn());
+        for(int i = 0; i < 10; i++){
+            assertFalse(failingPolicy.attemptOn());
+        }
+    }
 
 }
