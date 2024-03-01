@@ -52,4 +52,12 @@ public class StandardDeviceMyTest {
         verify(this.failingPolicy, times(1)).attemptOn();
     }
 
+    @Test
+    @DisplayName("StandardDevice successfully turn off")
+    public void testTurnOff(){
+        this.testTurnOnSuccessfully();
+        this.device.off();
+        assertFalse(this.device.isOn());
+    }
+
 }
