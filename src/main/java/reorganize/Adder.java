@@ -1,4 +1,4 @@
-package coverage;
+package reorganize.coverage;
 
 public class Adder {
     public int add(int i1, int i2){

@@ -1,4 +1,4 @@
-package devices;
+package reorganize.devices;
 
 import java.util.Random;
 

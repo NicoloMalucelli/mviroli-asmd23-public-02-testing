@@ -1,4 +1,4 @@
-package devices;
+package reorganize.devices;
 
 import java.util.stream.IntStream;
 
@@ -94,7 +94,7 @@ public class StandardDeviceTest {
         @BeforeEach
         void init(){
             // the spy is essentially a proxy to the DOC, used to capture events
-            this.spyFailingPolicy = spy(new RandomFailing());
+            this.spyFailingPolicy = Mockito.spy(new RandomFailing());
             device = new StandardDevice(this.spyFailingPolicy);
         }
 

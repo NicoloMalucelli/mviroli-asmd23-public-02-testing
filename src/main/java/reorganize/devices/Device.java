@@ -1,4 +1,4 @@
-package devices;
+package reorganize.devices;
 
 public interface Device {
     void on() throws IllegalStateException;

@@ -1,4 +1,4 @@
-package junitcases;
+package reorganize.junitcases;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;

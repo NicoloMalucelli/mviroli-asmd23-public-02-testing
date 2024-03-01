@@ -1,10 +1,6 @@
-package devices;
+package reorganize.devices;
 
 import org.junit.jupiter.api.*;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 

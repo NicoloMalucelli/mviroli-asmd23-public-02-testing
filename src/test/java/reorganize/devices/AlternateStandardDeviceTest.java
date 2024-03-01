@@ -1,12 +1,9 @@
-package devices;
+package reorganize.devices;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 import org.mockito.MockitoAnnotations;
-
-import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -14,8 +11,10 @@ import static org.mockito.Mockito.*;
 public class AlternateStandardDeviceTest {
 
     private Device device;
-    @Mock FailingPolicy stubFailingPolicy;
-    @Spy RandomFailing spyRandomPolicy;
+    @Mock
+    FailingPolicy stubFailingPolicy;
+    @Spy
+    RandomFailing spyRandomPolicy;
 
     @BeforeEach
     void init() {
