@@ -1,6 +1,8 @@
 package reorganize.devices;
 
 import org.junit.jupiter.api.*;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,12 +10,14 @@ import static org.mockito.Mockito.*;
 
 public class StandardDeviceMyTest {
 
+    @Mock
     private FailingPolicy failingPolicy;
     private StandardDevice device;
 
     @BeforeEach
     public void createDummyFailingPolicy(){
-        this.failingPolicy = mock(FailingPolicy.class);
+        MockitoAnnotations.openMocks(this);
+        //this.failingPolicy = mock(FailingPolicy.class);
         this.device = new StandardDevice(failingPolicy);
     }
 
