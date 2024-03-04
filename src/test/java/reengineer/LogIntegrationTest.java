@@ -46,6 +46,11 @@ public class LogIntegrationTest {
         assertEquals("Log: (0,0)\n", consumeStream(output));
     }
 
-
-
+    @Test
+    @DisplayName("test logger behaviour at the second first hit")
+    public void  testLoggerBehaviourAtTheSecondHit(){
+        this.testLoggerBehaviourAtTheFirstHit();
+        this.logic.hit(2, 3);
+        assertEquals("Log: (2,3)\nLog: 12 selected cells\n", consumeStream(output));
+    }
 }
