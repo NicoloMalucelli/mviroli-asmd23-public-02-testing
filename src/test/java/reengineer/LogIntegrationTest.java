@@ -3,6 +3,7 @@ package reengineer;
 import org.junit.jupiter.api.*;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
@@ -10,13 +11,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockStatic;
 
 public class LogIntegrationTest {
 
-    private Logger log;
-    private String lastPrint;
-    private int numOfPrints;
-    private final ByteArrayOutputStream output = new ByteArrayOutputStream();
+    private Logics logic;
+    private ByteArrayOutputStream output;
 
     private String consumeStream(ByteArrayOutputStream stream){
         final String str = stream.toString().replaceAll("\\r\\n?", "\n");
@@ -26,16 +27,21 @@ public class LogIntegrationTest {
 
     @BeforeEach
     public void setUp(){
+        this.output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
+        this.logic = new LogicsImpl(10);
     }
 
     @Test
     @DisplayName("test logger behaviour at application start")
     public void testLoggerBehaviourAtApplicationStart(){
-        final Logics logic = new LogicsImpl(10);
         assertEquals("Log: grid of size 10 created\n", consumeStream(output));
     }
 
+    @Test
+    @DisplayName("test logger behaviour at the first hit")
+    public void  testLoggerBehaviourAtTheFirstHit(){
 
+    }
 
 }
