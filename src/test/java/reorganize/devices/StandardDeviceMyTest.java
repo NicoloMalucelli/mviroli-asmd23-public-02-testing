@@ -13,12 +13,18 @@ public class StandardDeviceMyTest {
     @Mock
     private FailingPolicy failingPolicy;
     private StandardDevice device;
+    private AutoCloseable autoCloseable;
 
     @BeforeEach
     public void createDummyFailingPolicy(){
-        MockitoAnnotations.openMocks(this);
+        this.autoCloseable = MockitoAnnotations.openMocks(this);
         //this.failingPolicy = mock(FailingPolicy.class);
         this.device = new StandardDevice(failingPolicy);
+    }
+
+    @AfterEach
+    public void afterEach() throws Exception {
+        autoCloseable.close();
     }
 
     @Test
