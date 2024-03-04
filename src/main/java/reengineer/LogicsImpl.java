@@ -1,10 +1,7 @@
 package reengineer;
 
 import java.util.*;
-import java.util.function.*;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class LogicsImpl implements Logics {
 
@@ -13,13 +10,13 @@ public class LogicsImpl implements Logics {
 	private Set<Pair<Integer,Integer>> selected = new HashSet<>();
 	
 	public LogicsImpl(int size) {
-		Log.print("grid of size " + size + "created");
+		Logger.print("grid of size " + size + " created");
 		this.size = size;
 	}
 
 	@Override
 	public HitType hit(int x, int y) {
-		Log.print("(" + x  + "," + y + ")");
+		Logger.print("(" + x  + "," + y + ")");
 		var p = new Pair<>(x,y);
 		if (this.first.isEmpty()) {
 			this.first = Optional.of(p);
@@ -36,9 +33,9 @@ public class LogicsImpl implements Logics {
 				this.selected.add(new Pair<>(x,y));
 			}
 		}
-		Log.print(selected.size() + " selected cells");
+		Logger.print(selected.size() + " selected cells");
 		if(selected.size() == size*size){
-			Log.print("Game over");
+			Logger.print("Game over");
 		}
 	}
 	
