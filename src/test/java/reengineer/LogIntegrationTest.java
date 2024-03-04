@@ -41,7 +41,11 @@ public class LogIntegrationTest {
     @Test
     @DisplayName("test logger behaviour at the first hit")
     public void  testLoggerBehaviourAtTheFirstHit(){
-
+        consumeStream(output);
+        this.logic.hit(0, 0);
+        assertEquals("Log: (0,0)\n", consumeStream(output));
     }
+
+
 
 }
