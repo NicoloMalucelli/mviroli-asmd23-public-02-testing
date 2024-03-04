@@ -3,16 +3,11 @@ package reengineer;
 import org.junit.jupiter.api.*;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.mockStatic;
 
 public class LogIntegrationTest {
 
@@ -52,5 +47,13 @@ public class LogIntegrationTest {
         this.testLoggerBehaviourAtTheFirstHit();
         this.logic.hit(2, 3);
         assertEquals("Log: (2,3)\nLog: 12 selected cells\n", consumeStream(output));
+    }
+
+    @Test
+    @DisplayName("test logger behaviour at game-over")
+    public void  testLoggerBehaviourAtGameOver(){
+        this.testLoggerBehaviourAtTheFirstHit();
+        this.logic.hit(9, 9);
+        assertEquals("Log: (9,9)\nLog: 100 selected cells\nLog: Game over\n", consumeStream(output));
     }
 }
