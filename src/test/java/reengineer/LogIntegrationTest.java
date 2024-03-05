@@ -42,7 +42,7 @@ public class LogIntegrationTest {
     }
 
     @Test
-    @DisplayName("test logger behaviour at the second first hit")
+    @DisplayName("test logger behaviour at the second hit")
     public void  testLoggerBehaviourAtTheSecondHit(){
         this.testLoggerBehaviourAtTheFirstHit();
         this.logic.hit(2, 3);
